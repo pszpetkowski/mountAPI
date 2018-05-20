@@ -1,6 +1,21 @@
 mountAPI
 ========
 
+Installation
+============
+
+According to your preference you can either perform an installation with pip:
+
+.. code-block:: text
+
+    pip install mountapi
+
+Or pipenv
+
+.. code-block:: text
+
+    pipenv install --pre mountapi
+
 Example
 =======
 
