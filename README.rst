@@ -1,6 +1,15 @@
 mountAPI
 ========
 
+.. image:: https://img.shields.io/pypi/v/mountapi.svg
+  :target: https://pypi.org/project/mountapi
+
+.. image:: https://img.shields.io/travis/pyQuest/mountAPI.svg
+  :target: https://travis-ci.org/pyQuest/mountAPI
+
+.. image:: https://img.shields.io/codecov/c/github/pyQuest/mountAPI.svg
+  :target: https://codecov.io/gh/pyQuest/mountAPI
+
 Installation
 ============
 
