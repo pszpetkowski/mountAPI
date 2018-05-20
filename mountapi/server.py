@@ -4,6 +4,7 @@ import asyncio
 
 import httptools
 
+from mountapi.http.exceptions import HttpClientError
 from mountapi.http.request import Request
 from mountapi.http.response import Response
 from mountapi.lib import json
@@ -39,7 +40,11 @@ class Server:
         return True
 
     def _finish_response(self, task):
-        response: Response = Response.from_result(task.result())
+        e = task.exception()
+        if isinstance(e, HttpClientError):
+            response: Response = Response.from_http_client_error(e)
+        else:
+            response: Response = Response.from_result(task.result())
         self._write(response.to_bytes())
         self._transport.close()
 
