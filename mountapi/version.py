@@ -1,4 +1,5 @@
 __name__ = 'mountapi'
+__description__ = 'Loosely coupled, typed web framework for modern Python'
 __url__ = 'https://mountapi.org'
 __version__ = 'unreleased'
 __author__ = 'Piotr Szpetkowski'
