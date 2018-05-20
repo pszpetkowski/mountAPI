@@ -1,5 +1,5 @@
 ---------------------
-`0.1.0`_ (2018-05-20)
+`0.1.0-alpha`_ (2018-05-20)
 ---------------------
 
 Initial release introducing preview of ``mountAPI`` - a new web framework,
@@ -15,4 +15,4 @@ List of features delivered in this release:
 * Support for ujson
 
 
-.. _0.1.0: https://github.com/pyQuest/mountAPI/compare/c9c380f...0.1.0
+.. _0.1.0-alpha: https://github.com/pyQuest/mountAPI/compare/c9c380f...0.1.0-alpha
