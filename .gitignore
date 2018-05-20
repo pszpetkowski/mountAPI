@@ -15,5 +15,10 @@ coverage.xml
 .pytest_cache/
 .mypy_cache/
 
+# Packaging
+build/
+dist/
+mountapi.egg-info/
+
 # PyCharm
 .idea/
