@@ -12,5 +12,9 @@ class HttpClientError(HttpError):
     status: dict
 
 
+class Http403(HttpClientError):
+    status: dict = http_status.HTTP_403_FORBIDDEN
+
+
 class Http404(HttpClientError):
-    status: dict = http_status.NOT_FOUND_404
+    status: dict = http_status.HTTP_404_NOT_FOUND
