@@ -2,17 +2,21 @@ import time
 from wsgiref.handlers import format_date_time
 
 from mountapi.http.exceptions import HttpClientError
-from mountapi.http.status import OK_200
+from mountapi.http.status import Status, HTTP_200_OK
 from mountapi.lib import json
 
 
 class Response:
-    def __init__(self, content, status=None):
+    def __init__(self, content=None, status: Status = None):
         if isinstance(content, str):
             self._content = content.encode()
-        else:
+        elif isinstance(content, dict):
             self._content = json.dumps(content).encode()
-        self._status = status or OK_200
+        elif content is not None:
+            raise ValueError('Response can only be made using str or dict')
+        else:
+            self._content = None
+        self._status: Status = status or HTTP_200_OK
 
     @classmethod
     def from_result(cls, result):
@@ -23,7 +27,7 @@ class Response:
 
     @classmethod
     def from_http_client_error(cls, e: HttpClientError):
-        return Response(e.message, status=e.status)
+        return Response(e.message, e.status)
 
     def to_bytes(self) -> bytes:
         return (
@@ -32,7 +36,7 @@ class Response:
             b'Connection: closed\r\n'
             b'Content-Type: application/json\r\n\r\n'
             b'%b' % (
-                self._status['code'], self._status['reason'],
+                self._status.code, self._status.reason,
                 format_date_time(time.time()).encode(),
                 self._content,
             )
