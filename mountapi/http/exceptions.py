@@ -12,6 +12,18 @@ class HttpClientError(HttpError):
     status: dict
 
 
+class Http400(HttpClientError):
+    status: dict = http_status.HTTP_400_BAD_REQUEST
+
+
+class Http401(HttpClientError):
+    status: dict = http_status.HTTP_401_UNAUTHORIZED
+
+
+class Http402(HttpClientError):
+    status: dict = http_status.HTTP_402_PAYMENT_REQUIRED
+
+
 class Http403(HttpClientError):
     status: dict = http_status.HTTP_403_FORBIDDEN
 
