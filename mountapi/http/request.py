@@ -52,6 +52,9 @@ class Request:
         if query_params:
             self.GET.update(parse_qs(query_params.decode()))
 
+    def parse_header(self, name: bytes, value: bytes) -> None:
+        self.headers[name.decode()] = value.decode()
+
     async def handle(self):
         response = await self.handler()
         return response

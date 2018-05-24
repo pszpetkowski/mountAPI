@@ -29,6 +29,9 @@ class Server:
     def on_url(self, url: bytes):
         self._request.parse_url(url)
 
+    def on_header(self, name: bytes, value: bytes):
+        self._request.parse_header(name, value)
+
     def on_body(self, body: bytes):
         self._request.POST = json.loads(body)
 
