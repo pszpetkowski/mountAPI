@@ -1,3 +1,4 @@
+from collections import MutableMapping
 from typing import Dict, List, NewType
 
 from urllib.parse import parse_qs
@@ -7,11 +8,37 @@ import httptools
 QueryDict = NewType('QueryDict', Dict[str, List[str]])
 
 
+class CaseInsensitiveDict(MutableMapping):
+    def __init__(self):
+        self._store = {}
+
+    def __contains__(self, item):
+        return item.lower() in self._store
+
+    def __delitem__(self, key):
+        del self._store[key.lower()]
+
+    def __getitem__(self, item):
+        return self._store[item.lower()]
+
+    def __iter__(self):
+        return iter(self._store)
+
+    def __len__(self):
+        return len(self._store)
+
+    def __setitem__(self, key, value):
+        self._store[key.lower()] = value
+
+    def __repr__(self):
+        return self._store.__repr__()
+
+
 class Request:
     def __init__(self):
         self.method: str = ''
         self.path: str = ''
-        self.headers = {}
+        self.headers: CaseInsensitiveDict = CaseInsensitiveDict()
         self.handler = None
 
         self.GET: QueryDict = {}
